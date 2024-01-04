@@ -14,6 +14,11 @@ class library {
         let aBook = new book(author, title, pages, hasRead);
         this.myLibrary.push(aBook);
     }
+
+    bookInfo(i) {
+        return "Author: " + this.myLibrary[i].author + "\r\n" + "Title: " + this.myLibrary[i].title
+        + "\r\n" + this.myLibrary[i].pages + " Pages";
+    }
 }
 
 class book {
@@ -31,16 +36,17 @@ class DOMClass {
             const container = document.querySelector('.container');
             const bookElement = document.createElement('div');
             bookElement.classList.add('book');
-            bookElement.textContent = `${bookLibrary.myLibrary[i].title}\nhello this is`;
+            bookElement.textContent = `${bookLibrary.bookInfo(i)}`;
             container.appendChild(bookElement);
             console.log(bookLibrary.myLibrary[i].title);
         }
     }
 }
+
 let bookLibrary = new library();
 let dom = new DOMClass();
-let firstBook = new book('sa', 'sda', '32', 'yes');
-let secondBook = new book('la', '[ra', '32', 'no');
+let firstBook = new book('sa', 'Harry Potter', '32', 'yes');
+let secondBook = new book('la', 'Wizard Of OZ', '32', 'no');
 bookLibrary.myLibrary.push(firstBook);
 bookLibrary.myLibrary.push(secondBook);
 console.log(bookLibrary.myLibrary);

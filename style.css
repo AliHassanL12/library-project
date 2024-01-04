@@ -11,21 +11,20 @@ body {
 
 .container {
     display: flex;
-    border: solid red;
-    width: 100;
+    align-items: center;
+    height: 100vh;
 }
 .book {
     background-color: #94a3b8;
     display: flex;
     justify-content: center;
     color: white;
-    font-size: 20px;
-    width: 250px;
-    height: 300px;
+    padding: 20px;
+    font-size: 28px;
+    line-height: 1.6;
+    width: 220px;
+    height: 270px;
     margin: 20px;
     border-radius: 16px;
-}
-
-.book::before {
-    content: "Title: ";
+    white-space: pre;
 }
