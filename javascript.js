@@ -31,6 +31,15 @@ class book {
 }
 
 class DOMClass {
+    constructor() {
+        this.submitBtn = document.querySelector('.submit');
+        this.submitBtn.addEventListener("click", this.submitCard.bind(this));
+    }
+    
+    submitCard(event) {
+        event.preventDefault();
+    }
+
     displayBooks() {
         for (let i=0; i < bookLibrary.myLibrary.length; i++) {
             const cards = document.querySelector('.cards');
