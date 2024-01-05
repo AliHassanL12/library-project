@@ -1,18 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
+
 body {
+    font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
+}
+
+.cards {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 }
 .book {
     background-color: #94a3b8;
@@ -27,4 +35,36 @@ body {
     margin: 20px;
     border-radius: 16px;
     white-space: pre;
+}
+
+.btn {
+    width: 150px;
+    height: 35px;
+    border: none;
+    border-radius: 16px;
+    background-color: #64748b;
+    color: white;
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color: #334155;
+}
+
+.btn:active {
+    background-color: #475569;
+}
+
+input {
+    padding: 0;
+    margin: 0;
+    width: 150px
+}
+
+.form div {
+    display: flex;
+    flex-direction: column;
+}
+.form {
+    
 }

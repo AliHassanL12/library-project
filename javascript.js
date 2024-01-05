@@ -33,11 +33,11 @@ class book {
 class DOMClass {
     displayBooks() {
         for (let i=0; i < bookLibrary.myLibrary.length; i++) {
-            const container = document.querySelector('.container');
+            const cards = document.querySelector('.cards');
             const bookElement = document.createElement('div');
             bookElement.classList.add('book');
             bookElement.textContent = `${bookLibrary.bookInfo(i)}`;
-            container.appendChild(bookElement);
+            cards.appendChild(bookElement);
             console.log(bookLibrary.myLibrary[i].title);
         }
     }
