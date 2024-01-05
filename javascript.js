@@ -1,5 +1,3 @@
-
-
 class library {
     constructor() {
         this.myLibrary = [];
@@ -34,10 +32,30 @@ class DOMClass {
     constructor() {
         this.submitBtn = document.querySelector('.submit');
         this.submitBtn.addEventListener("click", this.submitCard.bind(this));
+        this.addBookBtn = document.querySelector('.btn');
+        this.addBookBtn.addEventListener("click", this.toggleForm.bind(this));
+    }
+    
+    toggleForm() {
+        const form = document.querySelector('.form');
+        if (document.getElementById("form").style.display === 'none' || document.getElementById("form").style.display === '') {
+            document.getElementById("form").style.display = 'block';
+        }
+        else {
+            document.getElementById("form").style.display = 'none';
+        }
     }
     
     submitCard(event) {
         event.preventDefault();
+        const form = document.querySelector('.form');
+        const data = new FormData(form);
+        const author = data.get("author");
+        const title = data.get('title');
+        const pages = data.get('pages');
+        let aBook = new book(author, title, pages, 'no');
+        bookLibrary.myLibrary.push(aBook);
+        console.log(bookLibrary.myLibrary);
     }
 
     displayBooks() {
