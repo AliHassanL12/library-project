@@ -56,6 +56,8 @@ class DOMClass {
         let aBook = new book(author, title, pages, 'no');
         bookLibrary.myLibrary.push(aBook);
         console.log(bookLibrary.myLibrary);
+        dom.removeBooks();
+        dom.displayBooks();
     }
 
     displayBooks() {
@@ -68,6 +70,14 @@ class DOMClass {
             console.log(bookLibrary.myLibrary[i].title);
         }
     }
+
+    removeBooks() {
+        const cards = document.querySelectorAll('.book');
+        cards.forEach((card) => {
+            console.log(card)
+            card.remove();
+        })
+    }
 }
 
 let bookLibrary = new library();
@@ -75,6 +85,6 @@ let dom = new DOMClass();
 let firstBook = new book('sa', 'Harry Potter', '32', 'yes');
 let secondBook = new book('la', 'Wizard Of OZ', '32', 'no');
 bookLibrary.myLibrary.push(firstBook);
-bookLibrary.myLibrary.push(secondBook);
-console.log(bookLibrary.myLibrary);
+bookLibrary.myLibrary.push(secondBook)
 dom.displayBooks();
+console.log(bookLibrary.myLibrary);
