@@ -37,15 +37,17 @@ body {
     font-size: 28px;
     line-height: 1.6;
     width: 220px;
-    height: 270px;
+    height: 300px;
     margin: 20px;
     border-radius: 16px;
     white-space: pre;
 }
 
-.btn, .submit {
+.btn,
+.submit, 
+.statusBtn {
     width: 150px;
-    height: 35px;
+    height: 40px;
     border: none;
     border-radius: 16px;
     background-color: #64748b;
@@ -53,24 +55,26 @@ body {
 }
 
 .form .submit {
-    margin-top: 20px;
+    margin-top: 15px;
     font-size: 14px;
 }
 .btn:hover,
-.submit:hover {
+.submit:hover,
+.statusBtn:hover {
     cursor: pointer;
     background-color: #334155;
 }
 
 .btn:active,
-.submit:active {
+.submit:active,
+.statusBtn:active {
     background-color: #475569;
 }
 
 input {
     padding: 0;
     margin: 0;
-    width: 150px
+    width: 150px;
 }
 
 .form div {

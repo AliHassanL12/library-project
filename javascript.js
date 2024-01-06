@@ -35,7 +35,6 @@ class DOMClass {
         this.cardContainer = document.getElementById('cards');
         this.cardContainer.addEventListener("click", function(event){
             const btnClicked = event.target;
-            console.log(btnClicked);
             if (btnClicked.classList.contains('position')) {
                 const btnID = btnClicked.dataset.index;
                 for (let i=0; i<bookLibrary.myLibrary.length; i++){
@@ -46,6 +45,23 @@ class DOMClass {
                     }
                 }
             }
+            else if (btnClicked.classList.contains('statusBtn')) {
+                const statusBtn = document.querySelectorAll('.statusBtn');
+                const btnID = btnClicked.dataset.index;
+                statusBtn.forEach((statusButton) => {
+                    for (let i=0; i<bookLibrary.myLibrary.length; i++){
+                        if(i == btnID) {
+                            if (statusButton.textContent.includes('Not Read') && statusButton.getAttribute('data-index') == i) {
+    
+                                statusButton.innerHTML = 'Read';
+                            }
+                            else if (statusButton.textContent.includes('Read') && statusButton.getAttribute('data-index') == i){
+                                statusButton.innerHTML = 'Not Read';
+                            }
+                        }
+                    }
+                })
+            }
         })
     }
 
@@ -55,14 +71,19 @@ class DOMClass {
             const cards = document.querySelector('.cards');
             const bookElement = document.createElement('div');
             const deleteBtn = document.createElement('button');
+            const statusBtn = document.createElement('button');
+            statusBtn.classList.add('statusBtn');
             deleteBtn.classList.add('btn');
             deleteBtn.classList.add('position');
             bookElement.classList.add('book');
             bookElement.textContent = `${bookLibrary.bookInfo(i)}`;
+            statusBtn.dataset.index = this.dataAttribute;
             deleteBtn.dataset.index = this.dataAttribute++;
             deleteBtn.textContent = `Delete book`;
+            statusBtn.textContent = `Not Read`;
             cards.appendChild(bookElement);
             bookElement.appendChild(deleteBtn);
+            bookElement.appendChild(statusBtn);
         }
     }
 
@@ -92,7 +113,6 @@ class DOMClass {
         const title = data.get('title');
         const pages = data.get('pages');
         bookLibrary.addBookToLibrary(author, title, pages, 'no');
-        console.log(bookLibrary.myLibrary);
         dom.removeBooks();
         dom.displayBooks();
     }
@@ -105,4 +125,3 @@ let secondBook = new book('la', 'Wizard Of OZ', '32', 'no');
 bookLibrary.myLibrary.push(firstBook);
 bookLibrary.myLibrary.push(secondBook)
 dom.displayBooks();
-console.log(bookLibrary.myLibrary);
