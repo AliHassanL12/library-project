@@ -64,9 +64,14 @@ class DOMClass {
         for (let i=0; i < bookLibrary.myLibrary.length; i++) {
             const cards = document.querySelector('.cards');
             const bookElement = document.createElement('div');
+            const deleteBtn = document.createElement('button');
+            deleteBtn.classList.add('btn');
+            deleteBtn.classList.add('position');
             bookElement.classList.add('book');
             bookElement.textContent = `${bookLibrary.bookInfo(i)}`;
+            deleteBtn.textContent = `Delete book`;
             cards.appendChild(bookElement);
+            bookElement.appendChild(deleteBtn);
             console.log(bookLibrary.myLibrary[i].title);
         }
     }
@@ -74,7 +79,6 @@ class DOMClass {
     removeBooks() {
         const cards = document.querySelectorAll('.book');
         cards.forEach((card) => {
-            console.log(card)
             card.remove();
         })
     }
