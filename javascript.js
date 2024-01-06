@@ -3,12 +3,7 @@ class library {
         this.myLibrary = [];
     }
 
-    addBookToLibrary() {
-        const author = prompt("Who's the author?");
-        const title = prompt("Book Title?");
-        const pages = prompt("How many pages?");
-        const hasRead = prompt("Have you read it already?");
-
+    addBookToLibrary(author,title, pages, hasRead) {
         let aBook = new book(author, title, pages, hasRead);
         this.myLibrary.push(aBook);
     }
@@ -29,12 +24,55 @@ class book {
 }
 
 class DOMClass {
+    dataAttribute = 0;
+
     constructor() {
         this.submitBtn = document.querySelector('.submit');
         this.submitBtn.addEventListener("click", this.submitCard.bind(this));
         this.addBookBtn = document.querySelector('.btn');
         this.addBookBtn.addEventListener("click", this.toggleForm.bind(this));
+
+        this.cardContainer = document.getElementById('cards');
+        this.cardContainer.addEventListener("click", function(event){
+            const btnClicked = event.target;
+            console.log(btnClicked);
+            if (btnClicked.classList.contains('position')) {
+                const btnID = btnClicked.dataset.index;
+                for (let i=0; i<bookLibrary.myLibrary.length; i++){
+                    if(i == btnID) {
+                        bookLibrary.myLibrary.splice(i, 1);
+                        dom.removeBooks();
+                        dom.displayBooks();
+                    }
+                }
+            }
+        })
     }
+
+    displayBooks() {
+        this.dataAttribute = 0;
+        for (let i=0; i < bookLibrary.myLibrary.length; i++) {
+            const cards = document.querySelector('.cards');
+            const bookElement = document.createElement('div');
+            const deleteBtn = document.createElement('button');
+            deleteBtn.classList.add('btn');
+            deleteBtn.classList.add('position');
+            bookElement.classList.add('book');
+            bookElement.textContent = `${bookLibrary.bookInfo(i)}`;
+            deleteBtn.dataset.index = this.dataAttribute++;
+            deleteBtn.textContent = `Delete book`;
+            cards.appendChild(bookElement);
+            bookElement.appendChild(deleteBtn);
+        }
+    }
+
+    removeBooks() {
+        const cards = document.querySelectorAll('.book');
+        cards.forEach((card) => {
+            card.remove();
+        })
+    }
+
     
     toggleForm() {
         const form = document.querySelector('.form');
@@ -45,7 +83,7 @@ class DOMClass {
             document.getElementById("form").style.display = 'none';
         }
     }
-    
+
     submitCard(event) {
         event.preventDefault();
         const form = document.querySelector('.form');
@@ -53,34 +91,10 @@ class DOMClass {
         const author = data.get("author");
         const title = data.get('title');
         const pages = data.get('pages');
-        let aBook = new book(author, title, pages, 'no');
-        bookLibrary.myLibrary.push(aBook);
+        bookLibrary.addBookToLibrary(author, title, pages, 'no');
         console.log(bookLibrary.myLibrary);
         dom.removeBooks();
         dom.displayBooks();
-    }
-
-    displayBooks() {
-        for (let i=0; i < bookLibrary.myLibrary.length; i++) {
-            const cards = document.querySelector('.cards');
-            const bookElement = document.createElement('div');
-            const deleteBtn = document.createElement('button');
-            deleteBtn.classList.add('btn');
-            deleteBtn.classList.add('position');
-            bookElement.classList.add('book');
-            bookElement.textContent = `${bookLibrary.bookInfo(i)}`;
-            deleteBtn.textContent = `Delete book`;
-            cards.appendChild(bookElement);
-            bookElement.appendChild(deleteBtn);
-            console.log(bookLibrary.myLibrary[i].title);
-        }
-    }
-
-    removeBooks() {
-        const cards = document.querySelectorAll('.book');
-        cards.forEach((card) => {
-            card.remove();
-        })
     }
 }
 
