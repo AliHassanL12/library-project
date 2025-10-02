@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100vh;
+    width: 100vw;
+    background-color: lightgray;
+    padding: 20px;
+    display: grid;
+    grid-template-rows: 5% 95%;
+}
+
+.container > h1 {
+    align-self: center;
+    justify-self: center;
+}
+
+.container > .cardContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    column-gap: 40px;
+    padding: 20px;
+}
+
+.cardContainer > .card {
+    padding: 20px;
+    height: 340px;
+    width: 250px;
+    background-color: lightblue;
+    border-radius: 20px;
+}
+
+.card > ul > li {
+    margin-bottom: 30px;
+    list-style: none;
+}
+
+.card > ul > li::first-letter {
+    text-transform: uppercase;
+}
