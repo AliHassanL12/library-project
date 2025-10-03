@@ -13,7 +13,7 @@
     grid-template-rows: 5% 95%;
 }
 
-.container > h1 {
+.header > h1 {
     align-self: center;
     justify-self: center;
 }
@@ -40,4 +40,18 @@
 
 .card > ul > li::first-letter {
     text-transform: uppercase;
+}
+
+.header {
+    display: grid;
+    position: relative;
+}
+
+.header > button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 60px;
+    font-size: 1.7rem;
 }

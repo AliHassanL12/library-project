@@ -21,6 +21,7 @@ addBookToLibrary('The grammar school', 'Random', '500', 'Yes')
 addBookToLibrary('Lord Of The Rings', 'God Knows', '500', 'No')
 addBookToLibrary('LOTM', 'Someone', '600', 'No')
 
+
 function displayBooks() {
     for (const book of myLibrary) {
         const cardContainer = document.querySelector('.cardContainer');
