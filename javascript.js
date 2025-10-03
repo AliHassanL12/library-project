@@ -42,4 +42,10 @@ function displayBooks() {
     }
 }
 
+const openButton = document.querySelector('.showModal');
+const dialog = document.querySelector('.dialog');
+openButton.addEventListener('click', () => {
+    dialog.showModal();
+})
+
 displayBooks()
