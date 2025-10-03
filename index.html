@@ -10,23 +10,23 @@
 <body>
     <dialog class="dialog">
         <form>
-            <div>
+            <div class="inputContainer">
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title">
             </div>
-            <div>
+            <div class="inputContainer">
                 <label for="author">Author:</label>
                 <input type="text" id="author" name="author">
             </div>
-            <div>
+            <div class="inputContainer">
                 <label for="pages">Pages:</label>
                 <input type= "tel" id="pages" name="pages">
             </div>
-            <div>
+            <div class="inputContainer">
                 <label for="read">Read?:</label>
                 <input type="checkbox" id="read" name="read">
             </div>
-            <button type="submit">Add Book</button>
+            <button type="submit" class="submit">Add Book</button>
             <button type="button">Cancel</button>
         </form>
     </dialog>
@@ -36,14 +36,6 @@
             <button class="showModal">+</button>
         </div>
         <div class="cardContainer">
-            <div class="card">
-                <ul>
-                    <li><span class="strong">Title: </span>Harry Potter</li>
-                    <li><span class="strong">Author: </span>JK Rowling</li>
-                    <li><span class="strong">Pages: </span>400 pages</li>
-                    <li><span class="strong">Read: </span>Yes/No</li>
-                </ul>
-            </div>
         </div>
     </div>
 </body>

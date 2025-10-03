@@ -42,10 +42,30 @@ function displayBooks() {
     }
 }
 
+function removeBooks() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach( (card) => {
+        card.remove();
+    })
+}
+
 const openButton = document.querySelector('.showModal');
 const dialog = document.querySelector('.dialog');
+const submitButton = document.querySelector('.submit');
+
 openButton.addEventListener('click', () => {
     dialog.showModal();
+});
+
+submitButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const title = document.querySelector("input[id='title']");
+    const author = document.querySelector("input[id='author']");
+    const pages = document.querySelector("input[id='pages']");
+    const read = document.querySelector("input[id='read']");
+    addBookToLibrary(title.value, author.value, pages.value, read.value);
+    removeBooks();
+    displayBooks();
 })
 
 displayBooks()
