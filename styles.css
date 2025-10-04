@@ -5,8 +5,11 @@
 }
 
 .dialog {
-    top: 300px;
-    left: 800px;
+    top: 200px;
+    left: 900px;
+}
+::backdrop {
+    background-color:  rgba(211, 211, 211, 0.438);
 }
 .container {
     height: 100vh;
@@ -63,7 +66,7 @@
 }
 
 form {
-    padding: 50px 75px;
+    padding: 50px 60px;
 }
 
 form > div {
@@ -87,15 +90,47 @@ form > div > label {
 }
 
 .readBtn:hover,
-.delBtn:hover {
+.delBtn:hover,
+.submit:hover,
+.cancel:hover {
     background-color: rgb(105, 223, 183);
 }
 
 .readBtn:active,
-.delBtn:active {
+.delBtn:active,
+.submit:active,
+.cancel:active {
     background-color: rgb(93, 211, 171);
 } 
 
 .readBtn {
     margin-left: 20px;
+}
+
+.dialog {
+    border: none;
+}
+
+.form {
+    background-color: #d3d3d382;
+    font-size: 1.2rem;
+}
+.form > div > input {
+    border: none;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.form > div > input:not(#read) {
+    width: 100%;
+}
+
+.submit, 
+.cancel {
+    padding: 10px;
+    width: 100px;
+    border: none;
+    background-color: aquamarine;
+    border-radius: 10px;
+    cursor: pointer;
 }
