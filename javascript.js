@@ -14,6 +14,14 @@ Book.prototype.generateID = function() {
 Book.prototype.getID = function() {
     return this.id;
 }
+
+Book.prototype.changeRead = function() {
+    if (this.read === 'Yes') {
+        this.read = 'No';
+    } else {
+        this.read = 'Yes';
+    }
+}
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read)
     myLibrary.push(book);
@@ -44,12 +52,46 @@ function displayBooks() {
         }
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('delBtn');
-        deleteButton.textContent = 'Delete'
+        deleteButton.textContent = 'Delete';
         card.appendChild(deleteButton);
+        const changeReadStatus = document.createElement('button');
+        changeReadStatus.classList.add('readBtn');
+        changeReadStatus.textContent = 'Change Read Status';
+        card.appendChild(changeReadStatus)
     }
     deleteBook();
+    attachReadListeners();
 }
 
+function attachReadListeners() {
+    const readBtns = document.querySelectorAll('.readBtn');
+    readBtns.forEach(button => {
+        const ID = button.parentElement.dataset.id;
+        button.addEventListener('click', () => {
+            for (const book of myLibrary) {
+                const objID = book.getID();
+                if (objID === ID) {
+                    const index = myLibrary.indexOf(book);
+                    myLibrary[index].changeRead();
+                    removeBooks();
+                    displayBooks();
+                } 
+            }
+        });
+    })
+}
+
+// function changeStatus(ID) {
+//     for (const book of myLibrary) {
+//         const objID = book.getID();
+//         if (objID === ID) {
+//             const index = myLibrary.indexOf(book);
+//             myLibrary[index].changeRead();
+//             removeBooks();
+//             displayBooks();
+//         } 
+//     }
+// }
 function removeBooks() {
     const cards = document.querySelectorAll('.card');
     cards.forEach( (card) => {
