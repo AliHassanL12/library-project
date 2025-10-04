@@ -25,6 +25,7 @@
 .container > .cardContainer {
     display: grid;
     grid-template-columns: repeat(auto-fit, 250px);
+    justify-content: center;
     column-gap: 40px;
     padding: 20px;
 }

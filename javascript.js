@@ -11,6 +11,9 @@ Book.prototype.generateID = function() {
     this.id = crypto.randomUUID()
 }
 
+Book.prototype.getID = function() {
+    return this.id;
+}
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read)
     myLibrary.push(book);
@@ -25,7 +28,6 @@ addBookToLibrary('LOTM', 'Someone', '600', 'No')
 function displayBooks() {
     for (const book of myLibrary) {
         const cardContainer = document.querySelector('.cardContainer');
-        console.log(cardContainer)
         const card = document.createElement('div');
         card.classList.add('card');
         cardContainer.appendChild(card);
@@ -33,13 +35,19 @@ function displayBooks() {
         card.appendChild(ul);
         for (const property in book) {
             let isOwn = book.hasOwnProperty(property);
+            card.dataset.id = `${book['id']}`
             if (isOwn && property !== 'id') {
                 const li = document.createElement('li');
                 li.textContent = `${property}: ${book[property]}`;
                 ul.appendChild(li);
             }
         }
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('delBtn');
+        deleteButton.textContent = 'Delete'
+        card.appendChild(deleteButton);
     }
+    deleteBook();
 }
 
 function removeBooks() {
@@ -48,6 +56,7 @@ function removeBooks() {
         card.remove();
     })
 }
+
 
 const openButton = document.querySelector('.showModal');
 const dialog = document.querySelector('.dialog');
@@ -63,9 +72,34 @@ submitButton.addEventListener('click', (event) => {
     const author = document.querySelector("input[id='author']");
     const pages = document.querySelector("input[id='pages']");
     const read = document.querySelector("input[id='read']");
+    if (read.checked) {
+        read.value = 'Yes';
+    } else {
+        read.value = 'No';
+    }
     addBookToLibrary(title.value, author.value, pages.value, read.value);
     removeBooks();
     displayBooks();
+    dialog.close()
 })
 
+function deleteBook() {
+    const delBtns = document.querySelectorAll('.delBtn');
+    delBtns.forEach((delBtn) => {
+        delBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const ID = delBtn.parentElement.dataset.id;
+            for (const book of myLibrary) {
+                const objID = book.getID();
+                if (objID === ID) {
+                    const index = myLibrary.indexOf(book);
+                    myLibrary.splice(index, 1);
+                } 
+                removeBooks();
+                displayBooks();
+            }
+        })
+    })
+}
 displayBooks()
+
