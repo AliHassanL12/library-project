@@ -33,6 +33,7 @@ addBookToLibrary('Lord Of The Rings', 'God Knows', '500', 'No')
 addBookToLibrary('LOTM', 'Someone', '600', 'No')
 
 
+
 function displayBooks() {
     for (const book of myLibrary) {
         const cardContainer = document.querySelector('.cardContainer');
@@ -68,30 +69,25 @@ function attachReadListeners() {
     readBtns.forEach(button => {
         const ID = button.parentElement.dataset.id;
         button.addEventListener('click', () => {
-            for (const book of myLibrary) {
-                const objID = book.getID();
-                if (objID === ID) {
-                    const index = myLibrary.indexOf(book);
-                    myLibrary[index].changeRead();
-                    removeBooks();
-                    displayBooks();
-                } 
-            }
-        });
+            changeStatus(ID)
+        })
     })
 }
 
-// function changeStatus(ID) {
-//     for (const book of myLibrary) {
-//         const objID = book.getID();
-//         if (objID === ID) {
-//             const index = myLibrary.indexOf(book);
-//             myLibrary[index].changeRead();
-//             removeBooks();
-//             displayBooks();
-//         } 
-//     }
-// }
+function changeStatus(ID) {
+    const index = retrieveIndex(ID);
+    myLibrary[index].changeRead();
+    resetLibraryDOM();
+}
+
+function retrieveIndex(ID) {
+    for (const book of myLibrary) {
+        const objID = book.getID();
+        if (objID === ID) {
+            return myLibrary.indexOf(book);
+        } 
+    }
+}
 function removeBooks() {
     const cards = document.querySelectorAll('.card');
     cards.forEach( (card) => {
@@ -99,7 +95,10 @@ function removeBooks() {
     })
 }
 
-
+function resetLibraryDOM() {
+    removeBooks();
+    displayBooks();
+}
 const openButton = document.querySelector('.showModal');
 const dialog = document.querySelector('.dialog');
 const submitButton = document.querySelector('.submit');
@@ -120,8 +119,7 @@ submitButton.addEventListener('click', (event) => {
         read.value = 'No';
     }
     addBookToLibrary(title.value, author.value, pages.value, read.value);
-    removeBooks();
-    displayBooks();
+    resetLibraryDOM();
     dialog.close()
 })
 
@@ -131,15 +129,9 @@ function deleteBook() {
         delBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             const ID = delBtn.parentElement.dataset.id;
-            for (const book of myLibrary) {
-                const objID = book.getID();
-                if (objID === ID) {
-                    const index = myLibrary.indexOf(book);
-                    myLibrary.splice(index, 1);
-                } 
-                removeBooks();
-                displayBooks();
-            }
+            const index = retrieveIndex(ID);
+            myLibrary.splice(index, 1);
+            resetLibraryDOM();
         })
     })
 }
