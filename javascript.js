@@ -57,7 +57,7 @@ function displayBooks() {
         card.appendChild(deleteButton);
         const changeReadStatus = document.createElement('button');
         changeReadStatus.classList.add('readBtn');
-        changeReadStatus.textContent = 'Change Read Status';
+        changeReadStatus.textContent = 'Read';
         card.appendChild(changeReadStatus)
     }
     deleteBook();
@@ -107,8 +107,7 @@ openButton.addEventListener('click', () => {
     dialog.showModal();
 });
 
-submitButton.addEventListener('click', (event) => {
-    event.preventDefault();
+submitButton.addEventListener('click', () => {
     const title = document.querySelector("input[id='title']");
     const author = document.querySelector("input[id='author']");
     const pages = document.querySelector("input[id='pages']");
@@ -138,5 +137,11 @@ function removeBook(delBtn) {
     myLibrary.splice(index, 1);
     resetLibraryDOM();
 }
+
+const cancelModalBtn = document.querySelector('.cancel');
+cancelModalBtn.addEventListener('click', () => {
+    dialog.close();
+})
+
 displayBooks()
 

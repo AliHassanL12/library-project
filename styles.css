@@ -26,14 +26,15 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, 250px);
     justify-content: center;
-    column-gap: 40px;
+    column-gap: 100px;
     padding: 20px;
 }
 
 .cardContainer > .card {
+    font-size: 1.5rem;
     padding: 20px;
     height: 340px;
-    width: 250px;
+    width: 300px;
     background-color: lightblue;
     border-radius: 20px;
 }
@@ -73,3 +74,28 @@ form > div > label {
     display: block;
 }
 
+.readBtn,
+.delBtn {
+    padding: 10px;
+    width: 120px;
+    height: 50px;
+    border: none;
+    border-radius: 22px;
+    font-size: 1.1rem;
+    background-color: aquamarine;
+    cursor: pointer;
+}
+
+.readBtn:hover,
+.delBtn:hover {
+    background-color: rgb(105, 223, 183);
+}
+
+.readBtn:active,
+.delBtn:active {
+    background-color: rgb(93, 211, 171);
+} 
+
+.readBtn {
+    margin-left: 20px;
+}
