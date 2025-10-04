@@ -126,14 +126,17 @@ submitButton.addEventListener('click', (event) => {
 function deleteBook() {
     const delBtns = document.querySelectorAll('.delBtn');
     delBtns.forEach((delBtn) => {
-        delBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const ID = delBtn.parentElement.dataset.id;
-            const index = retrieveIndex(ID);
-            myLibrary.splice(index, 1);
-            resetLibraryDOM();
+        delBtn.addEventListener('click', () => {
+            removeBook(delBtn)
         })
     })
+}
+
+function removeBook(delBtn) {
+    const ID = delBtn.parentElement.dataset.id;
+    const index = retrieveIndex(ID);
+    myLibrary.splice(index, 1);
+    resetLibraryDOM();
 }
 displayBooks()
 
