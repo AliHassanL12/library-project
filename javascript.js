@@ -60,7 +60,7 @@ function displayBooks() {
         changeReadStatus.textContent = 'Read';
         card.appendChild(changeReadStatus)
     }
-    deleteBook();
+    AttachDeleteListeners();
     attachReadListeners();
 }
 
@@ -107,7 +107,11 @@ openButton.addEventListener('click', () => {
     dialog.showModal();
 });
 
-submitButton.addEventListener('click', () => {
+
+submitButton.addEventListener('click', (event) => {
+    const form = document.querySelector('.form');
+    if (!form.checkValidity()) return;
+    event.preventDefault();
     const title = document.querySelector("input[id='title']");
     const author = document.querySelector("input[id='author']");
     const pages = document.querySelector("input[id='pages']");
@@ -119,10 +123,11 @@ submitButton.addEventListener('click', () => {
     }
     addBookToLibrary(title.value, author.value, pages.value, read.value);
     resetLibraryDOM();
+    form.reset();
     dialog.close()
 })
 
-function deleteBook() {
+function AttachDeleteListeners() {
     const delBtns = document.querySelectorAll('.delBtn');
     delBtns.forEach((delBtn) => {
         delBtn.addEventListener('click', () => {
@@ -144,4 +149,3 @@ cancelModalBtn.addEventListener('click', () => {
 })
 
 displayBooks()
-
